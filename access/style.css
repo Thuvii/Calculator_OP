@@ -5,29 +5,28 @@ html{
 }
 body{
   display: flex;
+  flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: grey;
+  height: 100vh;
 }
 #container{
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: red;
+  
+  background-color:  #1c1c1c;
   padding: 10px;
   border-radius: 20px;
-  max-width: 400px;
-
 }
 
 #screen{
-  height:150px;
-  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height:120px;
   width: 100%;
-  background-color: white;
+  background-color:  #1c1c1c;
+  color: #fff;
   margin-bottom: 10px;
   border-radius: 20px;
 
@@ -36,7 +35,25 @@ body{
 #screen .operationScreen{
   height: 30px;
   width: 100%;
-  word-wrap: break-word;
+  font-size: 24px;
+  
+}
+#screen .resultScreen{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-grow: 1;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#screen .operationScreen, .resultScreen{
+  max-width: 300px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow:ellipsis; 
+  margin: 0 10px;
+  text-align: right;
 }
 
 #button{
@@ -45,11 +62,21 @@ body{
   grid-template-rows: 80px 80px 80px 80px 80px;
   column-gap: 10px;
   row-gap: 10px;
+  
 }
 
 #button button{
   border-radius: 50px;
-
+  border: none;
+  font-size: 30px;
+}
+#button .btn-number{
+  background-color: #505050;
+  color: white;
+}
+#button .btn-oper{
+  color: white;
+  background-color: #ff9500;
 }
 
 #button .zero{
