@@ -7,28 +7,32 @@ let number2 = "";
 let oper = "";
 let checkNum2 = false;
 
+
 let btnNumber = document.querySelectorAll(".btn-number");
 let opDisplay = document.querySelector(".operationScreen");
-let operNumber = document.querySelectorAll(".btn-oper");
+let operation = document.querySelectorAll(".btn-oper");
 let equal = document.querySelector(".result-btn");
 let resDisplay = document.querySelector(".resultScreen");
-let cleanScreen = document.querySelector(".clean-btn");
+let cleanScreen = document.querySelector(".clear-btn");
+let dotBtn = document.querySelector(".dot-btn");
 
 function getNumber() {
   btnNumber.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (!checkNum2) {
         number1 += btn.innerText;
+        checkdot(number1);
         opDisplay.innerText = number1;
       } else {
         number2 += btn.innerText;
+        checkdot(number2);
         opDisplay.innerText = number1 + " " + oper + " " + number2;
       }
     });
   });
 }
 function getOper() {
-  operNumber.forEach((btn) => {
+  operation.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (number1) {
         oper = btn.innerText;
@@ -38,6 +42,15 @@ function getOper() {
     });
   });
 }
+
+function checkdot(number){
+  if(number.includes(".")){
+    dotBtn.disabled = true;
+  }else{
+    dotBtn.disabled = false;
+  }
+}
+
 
 function calculate() {
   let result = 0;
@@ -51,14 +64,22 @@ function calculate() {
       case "-":
         result = n1 - n2;
         break;
-      case "x":
+      case "×":
         result = n1 * n2;
         break;
       case "÷":
-        result = n1 / n2;
+        if(n2 == 0){
+          resDisplay.innerText = "Can't divide by 0";
+          return;
+        }else{
+          result = n1 / n2;
+        }
         break;
-  
+      case "%":
+        result = (n1/n2) * 100;
+        break;
     }
+    result = parseFloat(result.toFixed(10))
     resDisplay.innerText = result;
     clearAll();
   }
@@ -69,13 +90,20 @@ function clearAll() {
   number2 = "";
   oper = "";
   checkNum2 = false;
+  dotBtn.disabled = false;
 }
 function clean(){
  resDisplay.innerText = ""; 
+ opDisplay.innerText = "";
 }
 
 
 equal.addEventListener("click", calculate);
-
+cleanScreen.addEventListener("click", ()=>{
+  clean();
+  clearAll();
+  dotBtn.disabled = false;
+})
 getNumber();
 getOper();
+
