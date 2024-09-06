@@ -45,6 +45,7 @@ body{
   flex-grow: 1;
   font-size: 40px;
   font-weight: bold;
+  direction: ltr;
 }
 
 #screen .operationScreen, .resultScreen{
@@ -52,7 +53,7 @@ body{
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow:ellipsis; 
-  margin: 0 10px;
+  margin: 0 5px;
   text-align: right;
 }
 
