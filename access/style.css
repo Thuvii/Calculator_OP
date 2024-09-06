@@ -45,8 +45,10 @@ body {
   flex-grow: 1;
   font-size: 40px;
   font-weight: bold;
+  direction: ltr;
 }
 
+<<<<<<< HEAD
 #screen .operationScreen,
 .resultScreen {
   max-width: 300px;
@@ -54,8 +56,12 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0 10px;
+======= #screen .operationScreen, .resultScreen{ max-width: 300px; white-space: nowrap; overflow: hidden; 
+  text-overflow:ellipsis; 
   text-align: right;
-}
+  margin: 0 5px;}
+>>>>>>> 653fb8c2d051afeb3e03f53a41edfda9b21c45ca
+
 
 #button {
   display: grid;
