@@ -1,9 +1,10 @@
-html{
+html {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-body{
+
+body {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -11,34 +12,33 @@ body{
   align-items: center;
   height: 100vh;
 }
-#container{
-  
-  background-color:  #1c1c1c;
+
+#container {
+  background-color: #1c1c1c;
   padding: 10px;
   border-radius: 20px;
 }
 
-#screen{
+#screen {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  height:120px;
+  height: 120px;
   width: 100%;
-  background-color:  #1c1c1c;
+  background-color: #1c1c1c;
   color: #fff;
   margin-bottom: 10px;
   border-radius: 20px;
-
 }
 
-#screen .operationScreen{
+#screen .operationScreen {
   height: 30px;
   width: 100%;
   font-size: 24px;
-  
 }
-#screen .resultScreen{
+
+#screen .resultScreen {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -48,38 +48,51 @@ body{
   direction: ltr;
 }
 
-#screen .operationScreen, .resultScreen{
-  max-width: 300px; 
-  white-space: nowrap; 
-  overflow: hidden; 
+<<<<<<< HEAD
+#screen .operationScreen,
+.resultScreen {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 10px;
+======= #screen .operationScreen, .resultScreen{ max-width: 300px; white-space: nowrap; overflow: hidden; 
   text-overflow:ellipsis; 
-  margin: 0 5px;
   text-align: right;
-}
+  margin: 0 5px;}
+>>>>>>> 653fb8c2d051afeb3e03f53a41edfda9b21c45ca
 
-#button{
+
+#button {
   display: grid;
   grid-template-columns: 80px 80px 80px 80px;
   grid-template-rows: 80px 80px 80px 80px 80px;
   column-gap: 10px;
   row-gap: 10px;
-  
 }
 
-#button button{
+#button button {
   border-radius: 50px;
   border: none;
   font-size: 30px;
+   transition: background-color 0.3s ease, filter 0.3s ease;
 }
-#button .btn-number{
+
+#button .btn-number {
   background-color: #505050;
   color: white;
 }
-#button .btn-oper{
+
+#button button:hover {
+ filter:brightness(1.4); 
+}
+
+#button .btn-oper {
   color: white;
   background-color: #ff9500;
 }
 
-#button .zero{
+#button .zero {
   grid-column: span 2;
 }
+
