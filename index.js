@@ -20,32 +20,28 @@ function getNumber() {
   btnNumber.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (!checkNum2) {
-        if (btn.innerText == "+/-") {
-          changeSignBtn(number1);
-        } else {
           number1 += btn.innerText;
           checkdot(number1);
-        }
+        
         opDisplay.innerText = number1;
       } else {
-        if (btn.innerText == "+/-") {
-          changeSignBtn(number2);
-        } else {
           number2 += btn.innerText;
           checkdot(number2);
-        }
         opDisplay.innerText = number1 + " " + oper + " " + number2;
       }
     });
   });
 }
 
+
+
+
 function changeSignBtn(number) {
   if (number == "") {
-    signBtn.disabled = true;
-    return;
+ 
+    return number;
   } else {
-    signBtn.disabled = false;
+    
     number = parseFloat(number) * -1;
     return number;
   }
@@ -110,14 +106,30 @@ function clearAll() {
   oper = "";
   checkNum2 = false;
   dotBtn.disabled = false;
+  signBtn.disabled = false;
+
 }
 function clean() {
   resDisplay.innerText = "0";
   opDisplay.innerText = "";
   clearAll();
   dotBtn.disabled = false;
+  signBtn.disabled = false;
+
 }
 
+
+
+signBtn.addEventListener("click",()=>{
+  if (!checkNum2) {
+   number1 = changeSignBtn(number1);
+   opDisplay.innerText = number1;
+
+} else {
+    number2 = changeSignBtn(number2);
+    opDisplay.innerText = number1 + " " + oper + " " + number2;
+}
+})
 equal.addEventListener("click", calculate);
 cleanScreen.addEventListener("click", clean);
 getNumber();
