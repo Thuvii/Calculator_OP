@@ -19,29 +19,46 @@ let signBtn = document.querySelector(".btn-sign");
 function getNumber() {
   btnNumber.forEach((btn) => {
     btn.addEventListener("click", () => {
-      if (!checkNum2) {
-          number1 += btn.innerText;
-          checkdot(number1);
-        
-        opDisplay.innerText = number1;
-      } else {
-          number2 += btn.innerText;
-          checkdot(number2);
-        opDisplay.innerText = number1 + " " + oper + " " + number2;
-      }
+      handleInputAll(btn.innerText);
     });
   });
 }
 
+function handleInputAll(value) {
+  if (!checkNum2) {
+    if (value == "." && !number1.includes(".")) {
+      number1 += value;
+      checkdot(number1);
+    } else if (!isNaN(value)) {
+      number1 += value;
+    }
+    opDisplay.innerText = number1;
+  } else {
+    if (value == "." && !number2.includes(".")) {
+      number2 += value;
+      checkdot(number2);
+    } else if (!isNaN(value)) {
+      number2 += value;
+    }
+    opDisplay.innerText = number1 + " " + oper + " " + number2;
+  }
+}
 
-
+let operatorSign = ["+", "-", "÷", "×", "%"];
+function handleInputOper(value) {
+  if (number1) {
+    if (operatorSign.includes(value)) {
+      oper = value;
+      checkNum2 = true;
+      opDisplay.innerText = number1 + " " + oper;
+    }
+  }
+}
 
 function changeSignBtn(number) {
   if (number == "") {
- 
     return number;
   } else {
-    
     number = parseFloat(number) * -1;
     return number;
   }
@@ -50,11 +67,7 @@ function changeSignBtn(number) {
 function getOper() {
   operation.forEach((btn) => {
     btn.addEventListener("click", () => {
-      if (number1) {
-        oper = btn.innerText;
-        checkNum2 = true;
-        opDisplay.innerText = number1 + " " + oper;
-      }
+      handleInputOper(btn.innerText);
     });
   });
 }
@@ -64,6 +77,19 @@ function checkdot(number) {
     dotBtn.disabled = true;
   } else {
     dotBtn.disabled = false;
+  }
+}
+
+function handleBackspace() {
+  if (number2) {
+    number2 = number2.substring(0, number2.length - 1);
+    opDisplay.innerText = number1 + " " + oper + " " + number2;
+  } else if (oper) {
+    oper = "";
+    opDisplay.innerText = number1;
+  } else if (number1) {
+    number1 = number1.substring(0, number1.length - 1);
+    opDisplay.innerText = number1;
   }
 }
 
@@ -107,7 +133,6 @@ function clearAll() {
   checkNum2 = false;
   dotBtn.disabled = false;
   signBtn.disabled = false;
-
 }
 function clean() {
   resDisplay.innerText = "0";
@@ -115,22 +140,32 @@ function clean() {
   clearAll();
   dotBtn.disabled = false;
   signBtn.disabled = false;
-
 }
 
-
-
-signBtn.addEventListener("click",()=>{
+signBtn.addEventListener("click", () => {
   if (!checkNum2) {
-   number1 = changeSignBtn(number1);
-   opDisplay.innerText = number1;
-
-} else {
+    number1 = changeSignBtn(number1);
+    opDisplay.innerText = number1;
+  } else {
     number2 = changeSignBtn(number2);
     opDisplay.innerText = number1 + " " + oper + " " + number2;
-}
-})
+  }
+});
 equal.addEventListener("click", calculate);
 cleanScreen.addEventListener("click", clean);
 getNumber();
 getOper();
+
+document.addEventListener("keydown", (event) => {
+  let key = event.key;
+  if (!isNaN(key) || key === ".") {
+    handleInputAll(key);
+  } else if (operatorSign.includes(key)) {
+    handleInputOper(key);
+  } else if (key === "Enter" || key === "=") {
+    event.preventDefault();
+    calculate();
+  } else if (key === "Backspace") {
+    handleBackspace();
+  }
+});
