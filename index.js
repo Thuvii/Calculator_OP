@@ -100,6 +100,9 @@ function handleBackspace() {
     opDisplay.innerText = number1;
   } else if (number1) {
     number1 = number1.substring(0, number1.length - 1);
+    if(number1 == ""){
+      checkNum2 = false;
+    }
     opDisplay.innerText = number1;
   }
 }
