@@ -6,6 +6,7 @@ let number1 = "";
 let number2 = "";
 let oper = "";
 let checkNum2 = false;
+let operatorSign = ["+", "-", "÷", "×", "%"];
 
 let btnNumber = document.querySelectorAll(".btn-number");
 let opDisplay = document.querySelector(".operationScreen");
@@ -15,6 +16,10 @@ let resDisplay = document.querySelector(".resultScreen");
 let cleanScreen = document.querySelector(".clear-btn");
 let dotBtn = document.querySelector(".dot-btn");
 let signBtn = document.querySelector(".btn-sign");
+
+
+
+
 
 function getNumber() {
   btnNumber.forEach((btn) => {
@@ -44,7 +49,6 @@ function handleInputAll(value) {
   }
 }
 
-let operatorSign = ["+", "-", "÷", "×", "%"];
 function handleInputOper(value) {
   if (number1) {
     if (operatorSign.includes(value)) {
@@ -68,6 +72,7 @@ function getOper() {
   operation.forEach((btn) => {
     btn.addEventListener("click", () => {
       handleInputOper(btn.innerText);
+      btn.classList.add("select");
     });
   });
 }
