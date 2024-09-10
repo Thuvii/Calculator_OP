@@ -11,6 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #758694;
 }
 
 #container {
@@ -96,6 +97,8 @@ body {
   color: white;
   background-color: #ff9500;
 }
+
+
 
 #button .zero {
   grid-column: span 2;

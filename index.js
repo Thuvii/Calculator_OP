@@ -16,6 +16,10 @@ let cleanScreen = document.querySelector(".clear-btn");
 let dotBtn = document.querySelector(".dot-btn");
 let signBtn = document.querySelector(".btn-sign");
 
+
+
+
+
 function getNumber() {
   btnNumber.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -74,6 +78,7 @@ function getOper() {
   operation.forEach((btn) => {
     btn.addEventListener("click", () => {
       handleInputOper(btn.innerText);
+      btn.classList.add("select");
     });
   });
 }
