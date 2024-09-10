@@ -44,11 +44,17 @@ function handleInputAll(value) {
   }
 }
 
-let operatorSign = ["+", "-", "÷", "×", "%"];
+let operatorSign = ["+", "-", "÷", "×", "%", "/", "*"];
 function handleInputOper(value) {
   if (number1) {
     if (operatorSign.includes(value)) {
-      oper = value;
+      if (value == "/") {
+        oper = "÷";
+      } else if (value == "*") {
+        oper = "×";
+      } else {
+        oper = value;
+      }
       checkNum2 = true;
       opDisplay.innerText = number1 + " " + oper;
     }
@@ -105,9 +111,11 @@ function calculate() {
       case "-":
         result = n1 - n2;
         break;
+      case "*":
       case "×":
         result = n1 * n2;
         break;
+      case "/":
       case "÷":
         if (n2 == 0) {
           resDisplay.innerText = "Can't divide by 0";
