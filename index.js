@@ -16,10 +16,6 @@ let cleanScreen = document.querySelector(".clear-btn");
 let dotBtn = document.querySelector(".dot-btn");
 let signBtn = document.querySelector(".btn-sign");
 
-
-
-
-
 function getNumber() {
   btnNumber.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -50,7 +46,9 @@ function handleInputAll(value) {
 
 let operatorSign = ["+", "-", "÷", "×", "%", "/", "*"];
 function handleInputOper(value) {
-  if (number1) {
+  if (number1 && oper && number2) {
+    calculate();
+  } else if (number1) {
     if (operatorSign.includes(value)) {
       if (value == "/") {
         oper = "÷";
@@ -100,7 +98,7 @@ function handleBackspace() {
     opDisplay.innerText = number1;
   } else if (number1) {
     number1 = number1.substring(0, number1.length - 1);
-    if(number1 == ""){
+    if (number1 == "") {
       checkNum2 = false;
     }
     opDisplay.innerText = number1;
@@ -138,7 +136,10 @@ function calculate() {
     }
     result = parseFloat(result.toFixed(10));
     resDisplay.innerText = result;
-    clearAll();
+    number1 = result.toString();
+    number2 = "";
+    oper = "";
+    checkNum2 = false;
   }
 }
 
@@ -153,7 +154,9 @@ function clearAll() {
 function clean() {
   resDisplay.innerText = "0";
   opDisplay.innerText = "";
-  clearAll();
+  number1 = "";
+  number2 = "";
+  oper = "";
   dotBtn.disabled = false;
   signBtn.disabled = false;
 }
